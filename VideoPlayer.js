@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Video from 'react-native-video';
 import {
   TouchableWithoutFeedback,
-  TouchableHighlight,
   ImageBackground,
   PanResponder,
   StyleSheet,
@@ -12,6 +11,7 @@ import {
   Image,
   View,
   Text,
+  Pressable,
 } from 'react-native';
 import padStart from 'lodash/padStart';
 
@@ -259,7 +259,7 @@ export default class VideoPlayer extends Component {
    * Either close the video or go to a
    * new page.
    */
-  _onEnd() {}
+  _onEnd() { }
 
   /**
    * Set the error state to true which then
@@ -900,7 +900,7 @@ export default class VideoPlayer extends Component {
    */
   renderControl(children, callback, style = {}) {
     return (
-      <TouchableHighlight
+      <Pressable
         underlayColor="transparent"
         activeOpacity={0.3}
         onPress={() => {
@@ -909,7 +909,7 @@ export default class VideoPlayer extends Component {
         }}
         style={[styles.controls.control, style]}>
         {children}
-      </TouchableHighlight>
+      </Pressable>
     );
   }
 
@@ -981,13 +981,13 @@ export default class VideoPlayer extends Component {
     return (
       <View style={styles.volume.container}>
         <View
-          style={[styles.volume.fill, {width: this.state.volumeFillWidth}]}
+          style={[styles.volume.fill, { width: this.state.volumeFillWidth }]}
         />
         <View
-          style={[styles.volume.track, {width: this.state.volumeTrackWidth}]}
+          style={[styles.volume.track, { width: this.state.volumeTrackWidth }]}
         />
         <View
-          style={[styles.volume.handle, {left: this.state.volumePosition}]}
+          style={[styles.volume.handle, { left: this.state.volumePosition }]}
           {...this.player.volumePanResponder.panHandlers}>
           <Image
             style={styles.volume.icon}
@@ -1079,12 +1079,12 @@ export default class VideoPlayer extends Component {
           />
         </View>
         <View
-          style={[styles.seekbar.handle, {left: this.state.seekerPosition}]}
+          style={[styles.seekbar.handle, { left: this.state.seekerPosition }]}
           pointerEvents={'none'}>
           <View
             style={[
               styles.seekbar.circle,
-              {backgroundColor: this.props.seekColor || '#FFF'},
+              { backgroundColor: this.props.seekColor || '#FFF' },
             ]}
             pointerEvents={'none'}
           />
@@ -1187,7 +1187,7 @@ export default class VideoPlayer extends Component {
    */
   render() {
     return (
-      <TouchableWithoutFeedback
+      <Pressable
         onPress={this.events.onScreenTouch}
         style={[styles.player.container, this.styles.containerStyle]}>
         <View style={[styles.player.container, this.styles.containerStyle]}>
@@ -1213,7 +1213,7 @@ export default class VideoPlayer extends Component {
           {this.renderTopControls()}
           {this.renderBottomControls()}
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   }
 }
